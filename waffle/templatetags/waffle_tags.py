@@ -37,7 +37,8 @@ class WaffleNode(template.Node):
             name = self.name
         if not name:
             name = self.name
-        if self.condition(context.get('request', None), name):
+        request = context.get('request', None)
+        if request and self.condition(request, name):
             return self.nodelist_true.render(context)
         return self.nodelist_false.render(context)
 
